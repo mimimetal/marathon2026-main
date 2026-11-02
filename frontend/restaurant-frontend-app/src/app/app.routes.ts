@@ -102,6 +102,20 @@ export const routes: Routes = [
             (m) => m.GuestPreOrderPageComponent
           ),
       },
+      {
+        path: 'reservations/:id/group-order',
+        loadComponent: () =>
+          import('./pages/owner-pre-order-page/owner-pre-order-page.page').then(
+            (m) => m.OwnerPreOrderPagePage
+          ),
+      },
+      {
+        path: 'reservations/demo-reservation/group-order',
+        loadComponent: () =>
+          import('./pages/owner-pre-order-page/owner-pre-order-page.page').then(
+            (m) => m.OwnerPreOrderPagePage
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
