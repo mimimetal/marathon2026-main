@@ -1,1 +1,77 @@
-<p>owner-pre-order-page works!</p>
+<div class="pre-order-container">
+  <header class="header">
+    <h1>Групове предзамовлення</h1>
+    <p class="subtitle">Організація замовлення для вашого столика</p>
+  </header>
+
+  <!-- Деталі бронювання -->
+  <section class="reservation-info-card">
+    <h2>Деталі бронювання</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">Бронь №:</span>
+        <span class="value">{{ reservation.code }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">Дата та час:</span>
+        <span class="value">{{ reservation.dateTime }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">Кількість гостей:</span>
+        <span class="value">{{ reservation.guestsCount }} особи</span>
+      </div>
+      <div class="info-item">
+        <span class="label">Статус:</span>
+        <span class="status-badge open">{{ reservation.status }}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Блок шерингу посилання -->
+  <section class="share-section">
+    <h3>Запросити друзів</h3>
+    <p>Поділіться цим посиланням з гостями, щоб вони могли обрати страви:</p>
+    <div class="share-box">
+      <input type="text" readonly [value]="shareLink" />
+      <button type="button" class="btn-primary" (click)="copyLink()">
+        {{ isCopied ? 'Скопійовано! ✓' : 'Скопіювати' }}
+      </button>
+    </div>
+  </section>
+
+  <!-- Список обраних страв -->
+  <section class="order-summary-card">
+    <h2>Обрані страви ({{ dishes.length }})</h2>
+
+    <div *ngIf="dishes.length === 0" class="empty-state">
+      Список страв порожній. Запросіть друзів або додайте першу страву!
+    </div>
+
+    <ul *ngIf="dishes.length > 0" class="dishes-list">
+      <li *ngFor="let dish of dishes" class="dish-item">
+        <div class="dish-details">
+          <span class="dish-name">{{ dish.name }}</span>
+          <span class="dish-guest">Замовив(-ла): {{ dish.guestName }}</span>
+        </div>
+        <div class="dish-action">
+          <span class="dish-price">{{ dish.price }} ₴</span>
+          <button type="button" class="btn-delete" (click)="removeDish(dish.id)" title="Видалити">
+            ✕
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="total-bar">
+      <span>Загальна сума:</span>
+      <span class="total-price">{{ totalPrice }} ₴</span>
+    </div>
+  </section>
+
+  <!-- Дія -->
+  <div class="actions">
+    <button type="button" class="btn-success" (click)="submitOrder()">
+      Підтвердити та відправити замовлення
+    </button>
+  </div>
+</div>
