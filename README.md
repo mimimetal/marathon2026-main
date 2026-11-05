@@ -1,3 +1,12 @@
+## Local Frontend Development
+1. Перейдіть у папку `frontend` (або відповідну директорію).
+2. Виконайте `npm install` для встановлення залежностей.
+3. Запустіть локальний сервер: `ng serve` (доступно на `http://localhost:4200`).
+
+
+
+
+
 # Deployment Guide
 
 This repo uses three deployment tracks:
